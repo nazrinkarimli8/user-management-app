@@ -5,6 +5,7 @@ import az.edu.turing.usermanagementapp.mapper.UserMapper;
 import az.edu.turing.usermanagementapp.model.dto.request.ProfileRequestDto;
 import az.edu.turing.usermanagementapp.model.dto.request.UserRequestDto;
 import az.edu.turing.usermanagementapp.model.dto.response.ProfileResponseDto;
+import az.edu.turing.usermanagementapp.model.dto.response.UserAndProfileResponseDto;
 import az.edu.turing.usermanagementapp.model.dto.response.UserResponseDto;
 import az.edu.turing.usermanagementapp.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserResponseDto> getUserAndProfiles(UUID id) {
+    public Optional<UserAndProfileResponseDto> getUserAndProfiles(UUID id) {
         return Optional.empty();
     }
 }
