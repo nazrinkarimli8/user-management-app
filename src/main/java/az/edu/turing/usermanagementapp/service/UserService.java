@@ -3,6 +3,7 @@ package az.edu.turing.usermanagementapp.service;
 import az.edu.turing.usermanagementapp.model.dto.request.ProfileRequestDto;
 import az.edu.turing.usermanagementapp.model.dto.request.UserRequestDto;
 import az.edu.turing.usermanagementapp.model.dto.response.ProfileResponseDto;
+import az.edu.turing.usermanagementapp.model.dto.response.UserAndProfileResponseDto;
 import az.edu.turing.usermanagementapp.model.dto.response.UserResponseDto;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +30,7 @@ public interface UserService {
     UserResponseDto update(UUID id, UserRequestDto userDto);
 
     //getRequest
-    Optional<UserResponseDto> getUserAndProfiles(UUID id);
+    Optional<UserAndProfileResponseDto> getUserAndProfiles(UUID id);
 
     // update
 }
