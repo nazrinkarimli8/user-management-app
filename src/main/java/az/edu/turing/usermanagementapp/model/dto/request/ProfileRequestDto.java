@@ -1,4 +1,21 @@
 package az.edu.turing.usermanagementapp.model.dto.request;
 
-public record ProfileRequestDto() {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+public record ProfileRequestDto(
+        @NotBlank
+        String nickname,
+
+        @NotBlank
+        String password,
+
+        @NotBlank
+        @Email
+        String email,
+
+        @NotBlank
+        String profilePhoto
+
+        ) {
 }

@@ -30,4 +30,6 @@ public interface UserService {
 
     //getRequest
     Optional<UserResponseDto> getUserAndProfiles(UUID id);
+
+    // update
 }
