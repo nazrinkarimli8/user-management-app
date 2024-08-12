@@ -58,19 +58,4 @@ public class UserServiceImpl implements UserService {
     public Optional<UserResponseDto> getUserAndProfiles(UUID id) {
         return Optional.empty();
     }
-
-    @Override
-    public Optional<ProfileResponseDto> getProfile(UUID u_id, UUID p_id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<ProfileResponseDto> updateProfile(UUID u_id, UUID p_id, ProfileRequestDto profileDto) {
-        return Optional.empty();
-    }
-
-    @Override
-    public void deleteProfile(UUID u_id, UUID p_id) {
-
-    }
 }

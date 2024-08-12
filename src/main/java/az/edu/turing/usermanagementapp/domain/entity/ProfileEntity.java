@@ -20,6 +20,8 @@ public class ProfileEntity {
     private String nickname;
     private String password;
     private String email;
+    @Lob
+    private String profilePhoto;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
