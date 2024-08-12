@@ -10,23 +10,24 @@ import java.util.UUID;
 
 public interface UserService {
 
+    //postRequest
     void save(UserRequestDto userDto);
 
+    //getRequest
     List<UserResponseDto> getAll();
 
+    //getRequest
     Optional<UserResponseDto> getById(UUID id);
 
+    //deleteRequest
     void deleteAll();
 
+    //deleteRequest
     void deleteById(UUID id);
 
+    //putRequest
     UserResponseDto update(UUID id, UserRequestDto userDto);
 
+    //getRequest
     Optional<UserResponseDto> getUserAndProfiles(UUID id);
-
-    Optional<ProfileResponseDto> getProfile(UUID u_id, UUID p_id);
-
-    Optional<ProfileResponseDto> updateProfile(UUID u_id, UUID p_id, ProfileRequestDto profileDto);
-
-    void deleteProfile(UUID u_id, UUID p_id);
 }
