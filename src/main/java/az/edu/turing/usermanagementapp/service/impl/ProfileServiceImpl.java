@@ -4,6 +4,7 @@ import az.edu.turing.usermanagementapp.domain.entity.ProfileEntity;
 import az.edu.turing.usermanagementapp.domain.entity.UserEntity;
 import az.edu.turing.usermanagementapp.domain.repository.ProfileRepository;
 import az.edu.turing.usermanagementapp.domain.repository.UserRepository;
+import az.edu.turing.usermanagementapp.exception.ProfileNotFoundException;
 import az.edu.turing.usermanagementapp.exception.UserNotFoundException;
 import az.edu.turing.usermanagementapp.mapper.ProfileMapper;
 import az.edu.turing.usermanagementapp.model.dto.request.ProfileImageRequestDto;
@@ -61,12 +62,34 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Optional<ProfileResponseDto> updateProfile(UUID u_id, UUID p_id, ProfileRequestDto profileDto) {
-        return Optional.empty();
+
+        ProfileEntity existingProfile = profileRepository.findById(p_id)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found with id: " + p_id));
+
+        existingProfile.setNickname(profileDto.nickname());
+        existingProfile.setPassword(profileDto.password());
+        existingProfile.setEmail(profileDto.email());
+        existingProfile.setProfilePhoto(profileDto.profilePhoto());
+
+        ProfileEntity updatedProfile = profileRepository.save(existingProfile);
+
+        ProfileResponseDto profileResponseDto = profileMapper.toProfileResponseDto(updatedProfile);
+
+        return Optional.of(profileResponseDto);
     }
 
     @Override
     public Optional<ProfileResponseDto> updateProfileImage(UUID u_id, UUID p_id, ProfileImageRequestDto profileImageRequestDto) {
-        return Optional.empty();
+        ProfileEntity existingProfile = profileRepository.findById(p_id)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found with id: " + p_id));
+
+        existingProfile.setProfilePhoto(profileImageRequestDto.userImage());
+
+        ProfileEntity updatedProfile = profileRepository.save(existingProfile);
+
+        ProfileResponseDto profileResponseDto = profileMapper.toProfileResponseDto(updatedProfile);
+
+        return Optional.of(profileResponseDto);
     }
 
     @Override
