@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -42,6 +43,15 @@ public class UserController {
             @Valid @RequestBody ProfileRequestDto profileRequestDto) {
         ProfileResponseDto createdProfile = profileService.createProfile(userId, profileRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProfile);
+    }
+
+    @GetMapping("/{userId}/profiles/{profileId}")
+    public ResponseEntity<ProfileResponseDto> getProfile(
+            @PathVariable UUID userId,
+            @PathVariable UUID profileId) {
+        Optional<ProfileResponseDto> profile = profileService.getProfile(userId, profileId);
+        return profile.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
 

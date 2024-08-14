@@ -44,7 +44,19 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Optional<ProfileResponseDto> getProfile(UUID u_id, UUID p_id) {
-        return Optional.empty();
+        UserEntity userEntity = userRepository.findById(u_id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + u_id));
+
+        Optional<ProfileEntity> profileEntity = profileRepository.findById(p_id)
+                .filter(profile -> profile.getUser().getId().equals(u_id));
+
+        if (profileEntity.isPresent()) {
+            logger.info("Profile found with id: {} for user with id: {}", p_id, u_id);
+            return Optional.of(profileMapper.toProfileResponseDto(profileEntity.get()));
+        } else {
+            logger.warn("Profile with id: {} not found or does not belong to user with id: {}", p_id, u_id);
+            return Optional.empty();
+        }
     }
 
     @Override
