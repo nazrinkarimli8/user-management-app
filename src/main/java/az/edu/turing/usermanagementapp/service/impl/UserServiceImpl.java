@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
     @Override
-    public void save(UserRequestDto userDto) {
+    public void create(UserRequestDto userDto) {
         UserEntity userEntity = userMapper.dtoToEntity(userDto);
 
         userEntity.setStatus(ProfileStatus.ACTIVATED);

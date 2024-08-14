@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface UserService {
 
     //postRequest
-    void save(UserRequestDto userDto);
+    void create(UserRequestDto userDto);
 
     //getRequest
     List<UserResponseDto> getAll();
