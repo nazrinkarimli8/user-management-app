@@ -45,12 +45,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserResponseDto> getById(UUID id) {
-        return Optional.empty();
+        return userRepository.findById(id).map(userMapper::entityToDto);
     }
 
-    @Override
     public void deleteAll() {
-
+        List<UserEntity> users = userRepository.findAll();
+        users.forEach(user -> user.setStatus(ProfileStatus.DEACTIVATED));
+        userRepository.saveAll(users);
+        userRepository.deleteAll();
+        logger.info("All users have been marked as deleted and deleted from the database");
     }
 
     @Override
