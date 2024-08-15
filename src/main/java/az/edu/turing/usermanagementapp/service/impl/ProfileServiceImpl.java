@@ -78,6 +78,7 @@ public class ProfileServiceImpl implements ProfileService {
         return Optional.of(profileResponseDto);
     }
 
+
     @Override
     public Optional<ProfileResponseDto> updateProfileImage(UUID u_id, UUID p_id, ProfileImageRequestDto profileImageRequestDto) {
         ProfileEntity existingProfile = profileRepository.findById(p_id)
