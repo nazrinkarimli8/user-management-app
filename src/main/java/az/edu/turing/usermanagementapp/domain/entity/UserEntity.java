@@ -27,11 +27,15 @@ public class UserEntity {
     private String name;
     private String surname;
     private Integer age;
+
+    @Enumerated(EnumType.STRING)
     private ProfileStatus status; // enum
     @CreatedDate
+
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProfileEntity> profiles;
 }
